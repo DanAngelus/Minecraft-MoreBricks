@@ -1,10 +1,9 @@
 package net.punjarrr.morebricks.block;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -18,19 +17,19 @@ public class ModBlocks {
     public static final Block GRANITE_BRICKS = ModBlocks.register("granite_bricks",
             new Block(AbstractBlock.Settings.create()
                     .mapColor(MapColor.DIRT_BROWN)
-                    .instrument(Instrument.BASEDRUM)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
                     .strength(1.5f, 6.0f)));
     public static final Block DIORITE_BRICKS = ModBlocks.register("diorite_bricks",
             new Block(AbstractBlock.Settings.create()
                     .mapColor(MapColor.OFF_WHITE)
-                    .instrument(Instrument.BASEDRUM)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
                     .strength(1.5f, 6.0f)));
     public static final Block ANDESITE_BRICKS = ModBlocks.register("andesite_bricks",
             new Block(AbstractBlock.Settings.create()
                     .mapColor(MapColor.STONE_GRAY)
-                    .instrument(Instrument.BASEDRUM)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
                     .strength(1.5f, 6.0f)));
 
@@ -50,12 +49,12 @@ public class ModBlocks {
 
     private static Block register(String name, Block block) {
         registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, new Identifier(MoreBricks.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(MoreBricks.MOD_ID, name), block);
     }
 
     private static Item registerBlockItem(String name, Block block) {
-        return Registry.register(Registries.ITEM, new Identifier(MoreBricks.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings()));
+        return Registry.register(Registries.ITEM, Identifier.of(MoreBricks.MOD_ID, name),
+                new BlockItem(block, new Item.Settings()));
     }
 
     private static void addBlockItemsToBuildingBlocksItemGroup(FabricItemGroupEntries entries) {
